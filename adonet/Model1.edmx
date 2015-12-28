@@ -1,0 +1,238 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="FoxRiverDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'FoxRiverDB.dbo.crime_table' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="crime_table">
+          <Key>
+            <PropertyRef Name="crime_id" />
+            <PropertyRef Name="crime_title" />
+            <PropertyRef Name="crime_punishment" />
+          </Key>
+          <Property Name="crime_id" Type="int" Nullable="false" />
+          <Property Name="crime_title" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="crime_punishment" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'FoxRiverDB.dbo.prisoner_crime' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="prisoner_crime">
+          <Key>
+            <PropertyRef Name="p_id" />
+            <PropertyRef Name="crime_id" />
+          </Key>
+          <Property Name="p_id" Type="int" Nullable="false" />
+          <Property Name="crime_id" Type="int" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'FoxRiverDB.dbo.prisoner_info_table' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="prisoner_info_table">
+          <Key>
+            <PropertyRef Name="p_id" />
+            <PropertyRef Name="p_name" />
+            <PropertyRef Name="p_cnic" />
+            <PropertyRef Name="p_address" />
+            <PropertyRef Name="p_homenum" />
+            <PropertyRef Name="p_maritalstatus" />
+            <PropertyRef Name="p_dateofarrival" />
+            <PropertyRef Name="p_dateofrelease" />
+            <PropertyRef Name="p_type" />
+          </Key>
+          <Property Name="p_id" Type="int" Nullable="false" />
+          <Property Name="p_name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="p_cnic" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="p_address" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="p_homenum" Type="int" Nullable="false" />
+          <Property Name="p_maritalstatus" Type="bit" Nullable="false" />
+          <Property Name="p_dateofarrival" Type="date" Nullable="false" />
+          <Property Name="p_dateofrelease" Type="date" Nullable="false" />
+          <Property Name="p_type" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'FoxRiverDB.dbo.prisoner_propertyandcash' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="prisoner_propertyandcash">
+          <Key>
+            <PropertyRef Name="p_id" />
+            <PropertyRef Name="p_items" />
+            <PropertyRef Name="item_roomnum" />
+            <PropertyRef Name="item_shelfnum" />
+          </Key>
+          <Property Name="p_id" Type="int" Nullable="false" />
+          <Property Name="p_items" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="item_roomnum" Type="int" Nullable="false" />
+          <Property Name="item_shelfnum" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="FoxRiverDBModelStoreContainer">
+          <EntitySet Name="crime_table" EntityType="Self.crime_table" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [crime_table].[crime_id] AS [crime_id], 
+    [crime_table].[crime_title] AS [crime_title], 
+    [crime_table].[crime_punishment] AS [crime_punishment]
+    FROM [dbo].[crime_table] AS [crime_table]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="prisoner_crime" EntityType="Self.prisoner_crime" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [prisoner_crime].[p_id] AS [p_id], 
+    [prisoner_crime].[crime_id] AS [crime_id]
+    FROM [dbo].[prisoner_crime] AS [prisoner_crime]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="prisoner_info_table" EntityType="Self.prisoner_info_table" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [prisoner_info_table].[p_id] AS [p_id], 
+    [prisoner_info_table].[p_name] AS [p_name], 
+    [prisoner_info_table].[p_cnic] AS [p_cnic], 
+    [prisoner_info_table].[p_address] AS [p_address], 
+    [prisoner_info_table].[p_homenum] AS [p_homenum], 
+    [prisoner_info_table].[p_maritalstatus] AS [p_maritalstatus], 
+    [prisoner_info_table].[p_dateofarrival] AS [p_dateofarrival], 
+    [prisoner_info_table].[p_dateofrelease] AS [p_dateofrelease], 
+    [prisoner_info_table].[p_type] AS [p_type]
+    FROM [dbo].[prisoner_info_table] AS [prisoner_info_table]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="prisoner_propertyandcash" EntityType="Self.prisoner_propertyandcash" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [prisoner_propertyandcash].[p_id] AS [p_id], 
+    [prisoner_propertyandcash].[p_items] AS [p_items], 
+    [prisoner_propertyandcash].[item_roomnum] AS [item_roomnum], 
+    [prisoner_propertyandcash].[item_shelfnum] AS [item_shelfnum]
+    FROM [dbo].[prisoner_propertyandcash] AS [prisoner_propertyandcash]</DefiningQuery>
+          </EntitySet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="FoxRiverDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="crime_table">
+          <Key>
+            <PropertyRef Name="crime_id" />
+            <PropertyRef Name="crime_title" />
+            <PropertyRef Name="crime_punishment" />
+          </Key>
+          <Property Name="crime_id" Type="Int32" Nullable="false" />
+          <Property Name="crime_title" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="crime_punishment" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="prisoner_crime">
+          <Key>
+            <PropertyRef Name="p_id" />
+            <PropertyRef Name="crime_id" />
+          </Key>
+          <Property Name="p_id" Type="Int32" Nullable="false" />
+          <Property Name="crime_id" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="prisoner_info_table">
+          <Key>
+            <PropertyRef Name="p_id" />
+            <PropertyRef Name="p_name" />
+            <PropertyRef Name="p_cnic" />
+            <PropertyRef Name="p_address" />
+            <PropertyRef Name="p_homenum" />
+            <PropertyRef Name="p_maritalstatus" />
+            <PropertyRef Name="p_dateofarrival" />
+            <PropertyRef Name="p_dateofrelease" />
+            <PropertyRef Name="p_type" />
+          </Key>
+          <Property Name="p_id" Type="Int32" Nullable="false" />
+          <Property Name="p_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="p_cnic" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="p_address" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="p_homenum" Type="Int32" Nullable="false" />
+          <Property Name="p_maritalstatus" Type="Boolean" Nullable="false" />
+          <Property Name="p_dateofarrival" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="p_dateofrelease" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="p_type" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="prisoner_propertyandcash">
+          <Key>
+            <PropertyRef Name="p_id" />
+            <PropertyRef Name="p_items" />
+            <PropertyRef Name="item_roomnum" />
+            <PropertyRef Name="item_shelfnum" />
+          </Key>
+          <Property Name="p_id" Type="Int32" Nullable="false" />
+          <Property Name="p_items" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="item_roomnum" Type="Int32" Nullable="false" />
+          <Property Name="item_shelfnum" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="FoxRiverDBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="crime_table" EntityType="Self.crime_table" />
+          <EntitySet Name="prisoner_crime" EntityType="Self.prisoner_crime" />
+          <EntitySet Name="prisoner_info_table" EntityType="Self.prisoner_info_table" />
+          <EntitySet Name="prisoner_propertyandcash" EntityType="Self.prisoner_propertyandcash" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="FoxRiverDBModelStoreContainer" CdmEntityContainer="FoxRiverDBEntities">
+          <EntitySetMapping Name="crime_table">
+            <EntityTypeMapping TypeName="FoxRiverDBModel.crime_table">
+              <MappingFragment StoreEntitySet="crime_table">
+                <ScalarProperty Name="crime_id" ColumnName="crime_id" />
+                <ScalarProperty Name="crime_title" ColumnName="crime_title" />
+                <ScalarProperty Name="crime_punishment" ColumnName="crime_punishment" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="prisoner_crime">
+            <EntityTypeMapping TypeName="FoxRiverDBModel.prisoner_crime">
+              <MappingFragment StoreEntitySet="prisoner_crime">
+                <ScalarProperty Name="p_id" ColumnName="p_id" />
+                <ScalarProperty Name="crime_id" ColumnName="crime_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="prisoner_info_table">
+            <EntityTypeMapping TypeName="FoxRiverDBModel.prisoner_info_table">
+              <MappingFragment StoreEntitySet="prisoner_info_table">
+                <ScalarProperty Name="p_id" ColumnName="p_id" />
+                <ScalarProperty Name="p_name" ColumnName="p_name" />
+                <ScalarProperty Name="p_cnic" ColumnName="p_cnic" />
+                <ScalarProperty Name="p_address" ColumnName="p_address" />
+                <ScalarProperty Name="p_homenum" ColumnName="p_homenum" />
+                <ScalarProperty Name="p_maritalstatus" ColumnName="p_maritalstatus" />
+                <ScalarProperty Name="p_dateofarrival" ColumnName="p_dateofarrival" />
+                <ScalarProperty Name="p_dateofrelease" ColumnName="p_dateofrelease" />
+                <ScalarProperty Name="p_type" ColumnName="p_type" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="prisoner_propertyandcash">
+            <EntityTypeMapping TypeName="FoxRiverDBModel.prisoner_propertyandcash">
+              <MappingFragment StoreEntitySet="prisoner_propertyandcash">
+                <ScalarProperty Name="p_id" ColumnName="p_id" />
+                <ScalarProperty Name="p_items" ColumnName="p_items" />
+                <ScalarProperty Name="item_roomnum" ColumnName="item_roomnum" />
+                <ScalarProperty Name="item_shelfnum" ColumnName="item_shelfnum" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

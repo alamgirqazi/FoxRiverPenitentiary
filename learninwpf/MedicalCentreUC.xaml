@@ -1,0 +1,111 @@
+﻿<UserControl x:Class="learninwpf.MedicalCentreUC"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                      
+               xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls"
+        xmlns:Controls="http://metro.mahapps.com/winfx/xaml/controls" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+                          d:DesignHeight="749" d:DesignWidth="431">
+    <!--<UserControl.Resources>
+
+        <Style TargetType="{x:Type Control}" x:Key="TooltipInError">
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="Margin" Value="0,2,40,2" />
+            <Setter Property="Validation.ErrorTemplate">
+                <Setter.Value>
+                    <ControlTemplate>
+                        <DockPanel LastChildFill="true">
+                            <Border Background="Red" DockPanel.Dock="right" Margin="5,0,0,0" Width="14" Height="14" CornerRadius="7"
+                            ToolTip="{Binding ElementName=customAdorner, Path=AdornedElement.(Validation.Errors)[0].ErrorContent}">
+                                <TextBlock Text="!" VerticalAlignment="center" HorizontalAlignment="center" FontWeight="Bold" Foreground="white">
+                                </TextBlock>
+                            </Border>
+                            <AdornedElementPlaceholder Name="customAdorner" VerticalAlignment="Center" >
+                                <Border BorderBrush="red" BorderThickness="1" />
+                            </AdornedElementPlaceholder>
+                        </DockPanel>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Resources>-->
+    
+    <Grid Margin="10,10,0,0" Height="414" VerticalAlignment="Top" Loaded="Grid_Loaded">
+        <TextBox x:Name="txtid" HorizontalAlignment="Left" Height="23" Margin="174,30,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" RenderTransformOrigin="1.475,-0.962">
+
+            <TextBox.Text>
+                <Binding Path="p_id"
+                         ValidatesOnDataErrors="True"   
+                         UpdateSourceTrigger="LostFocus" NotifyOnValidationError="True">
+                    <Binding.ValidationRules>
+                        <ExceptionValidationRule/>
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox.Text>
+
+
+        </TextBox>
+
+        <TextBox x:Name="txtbednum" HorizontalAlignment="Left" Height="23" Margin="175,195,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" RenderTransformOrigin="1.475,-0.962">
+
+            <TextBox.Text>
+                <Binding Path="bed_num"
+                         ValidatesOnDataErrors="True"   
+                         UpdateSourceTrigger="LostFocus" NotifyOnValidationError="True">
+                    <Binding.ValidationRules>
+                        <ExceptionValidationRule/>
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox.Text>
+        </TextBox>
+        <TextBox x:Name="txtdisease" HorizontalAlignment="Left" Height="23" Margin="174,108,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" RenderTransformOrigin="1.475,-0.962">
+
+            <TextBox.Text>
+                <Binding Path="p_disease"
+                         ValidatesOnDataErrors="True"   
+                         UpdateSourceTrigger="LostFocus" NotifyOnValidationError="True">
+                    <Binding.ValidationRules>
+                        <ExceptionValidationRule/>
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox.Text>
+        </TextBox>
+        <TextBox x:Name="txtwardnum" HorizontalAlignment="Left" Height="23" Margin="174,153,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" RenderTransformOrigin="1.475,-0.962">
+
+            <TextBox.Text>
+                <Binding Path="medicalward_num"
+                         ValidatesOnDataErrors="True"   
+                         UpdateSourceTrigger="LostFocus" NotifyOnValidationError="True">
+                    <Binding.ValidationRules>
+                        <ExceptionValidationRule/>
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox.Text>
+        </TextBox>
+        <Label Content="Prisoner ID" HorizontalAlignment="Left" Margin="28,30,0,0" VerticalAlignment="Top"/>
+        <Label Content="Ward Number" HorizontalAlignment="Left" Margin="28,153,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.5,1.462"/>
+        <Label Content="Date" HorizontalAlignment="Left" Margin="32,71,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.5,1.462"/>
+        <Label Content="Disease" HorizontalAlignment="Left" Margin="32,108,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.5,1.462"/>
+        <Label Content="Bed Number" HorizontalAlignment="Left" Margin="28,195,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.5,1.462"/>
+        <Label Content="Number of Days spent" HorizontalAlignment="Left" Margin="28,235,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.5,1.462"/>
+
+        <TextBox x:Name="txtdaysspent" HorizontalAlignment="Left" Height="23" Margin="175,235,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" RenderTransformOrigin="1.475,-0.962">
+
+            <TextBox.Text>
+                <Binding Path="numberofdaysspent"
+                         ValidatesOnDataErrors="True"   
+                         UpdateSourceTrigger="LostFocus" NotifyOnValidationError="True">
+                    <Binding.ValidationRules>
+                        <ExceptionValidationRule/>
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox.Text>
+
+        </TextBox>
+        <DatePicker Name="datepicker" HorizontalAlignment="Left" Margin="174,71,0,0" VerticalAlignment="Top" Width="121"/>
+        <Button Style="{StaticResource AccentedSquareButtonStyle}" Content="Save" HorizontalAlignment="Left" Margin="174,281,0,0" VerticalAlignment="Top" Name="btnSave" Width="94" RenderTransformOrigin="-5.73,4.721" Height="33" Click="btnSave_Click_1" />
+
+    </Grid>
+</UserControl>

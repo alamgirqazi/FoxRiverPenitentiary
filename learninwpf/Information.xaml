@@ -1,0 +1,23 @@
+﻿<Window x:Class="learninwpf.Information"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                 
+               xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls"
+        xmlns:Controls="http://metro.mahapps.com/winfx/xaml/controls" 
+        
+        
+        Title="Information" Height="389" Width="451" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+    <Grid Margin="24,0,45,234">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="93*"/>
+            <ColumnDefinition Width="91*"/>
+        </Grid.ColumnDefinitions>
+        <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Height="49" Width="349" Grid.ColumnSpan="2" FontSize="22" FontFamily="Arial Black"><Run FontWeight="Bold" Text="Fox River State Penitentiary"/><LineBreak/><Run/><LineBreak/><Run/></TextBlock>
+        <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Height="102" Width="250" Margin="0,70,0,-113" RenderTransformOrigin="1.163,2.562" Grid.ColumnSpan="2" FontSize="14"><Run FontWeight="Bold" Text="Version 1 . 4 . 0"/><LineBreak/><Run/><LineBreak/><Run Text="Developed by: "/><LineBreak/><Run/><LineBreak/><Run Text="Alamgir Munir Qazi and Danish Nawaz "/></TextBlock>
+        <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Width="418" Margin="-12,172,-30,-172" Height="72" VerticalAlignment="Top" RenderTransformOrigin="0.51,1.25" Grid.ColumnSpan="2" FontSize="14"><Run/><LineBreak/><Run Text="The Source Code of this project is Open Source under MIT license. The source code is available at "/> <Hyperlink RequestNavigate="Hyperlink_RequestNavigate" 
+               NavigateUri="http://www.msn.com">Github</Hyperlink></TextBlock>
+
+        <Button Style="{StaticResource AccentedSquareButtonStyle}"  Content="OK" Height="35" HorizontalAlignment="Left" Margin="135,271,0,-195" Name="BTNsave" VerticalAlignment="Top" Width="105" Click="BTNsave_Click" Grid.ColumnSpan="2" />
+
+    </Grid>
+</Window>

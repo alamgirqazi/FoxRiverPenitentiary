@@ -1,0 +1,458 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="PrisonersModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Crime_Information">
+          <Key>
+            <PropertyRef Name="crime_id" />
+          </Key>
+          <Property Name="crime_id" Type="int" Nullable="false" />
+          <Property Name="crime_title" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="crime_punishment" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="crime_fine" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="crime_bail" Type="bit" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'FoxRiverDatabase.dbo.Prisoner_Crime' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="Prisoner_Crime">
+          <Key>
+            <PropertyRef Name="p_id" />
+            <PropertyRef Name="crime_id" />
+          </Key>
+          <Property Name="p_id" Type="int" Nullable="false" />
+          <Property Name="crime_id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="prisoner_info">
+          <Key>
+            <PropertyRef Name="p_id" />
+          </Key>
+          <Property Name="p_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="p_name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="p_cnic" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="p_address" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="p_homenum" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="p_maritalstatus" Type="bit" Nullable="false" />
+          <Property Name="p_block" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="p_roomnum" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="p_dateofarrival" Type="date" Nullable="false" />
+          <Property Name="p_dateofrelease" Type="date" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'FoxRiverDatabase.dbo.Prisoner_Medical' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="Prisoner_Medical">
+          <Key>
+            <PropertyRef Name="p_id" />
+            
+            
+            
+            
+            
+          </Key>
+          <Property Name="p_id" Type="int" Nullable="false" />
+          <Property Name="p_med_date" Type="date" Nullable="false" />
+          <Property Name="p_disease" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="medicalward_num" Type="int" Nullable="false" />
+          <Property Name="bed_num" Type="int" Nullable="false" />
+          <Property Name="numberofdaysspent" Type="int" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'FoxRiverDatabase.dbo.prisoner_property_cash' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="prisoner_property_cash">
+          <Key>
+            <PropertyRef Name="p_id" />
+            
+            
+            
+          </Key>
+          <Property Name="p_id" Type="int" Nullable="false" />
+          <Property Name="p_items" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="item_roomnum" Type="int" Nullable="false" />
+          <Property Name="item_shelfnum" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'FoxRiverDatabase.dbo.prisoner_work_allotment' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="prisoner_work_allotment">
+          <Key>
+            <PropertyRef Name="p_id" />
+            
+            
+          </Key>
+          <Property Name="p_id" Type="int" Nullable="false" />
+          <Property Name="work_type" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="work_shifttime" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <Association Name="FK_Prisoner_Crime_Crime_Information">
+          <End Role="Crime_Information" Type="Self.Crime_Information" Multiplicity="1" />
+          <End Role="Prisoner_Crime" Type="Self.Prisoner_Crime" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Crime_Information">
+              <PropertyRef Name="crime_id" />
+            </Principal>
+            <Dependent Role="Prisoner_Crime">
+              <PropertyRef Name="crime_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Prisoner_Crime_prisoner_info">
+          <End Role="prisoner_info" Type="Self.prisoner_info" Multiplicity="1" />
+          <End Role="Prisoner_Crime" Type="Self.Prisoner_Crime" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="prisoner_info">
+              <PropertyRef Name="p_id" />
+            </Principal>
+            <Dependent Role="Prisoner_Crime">
+              <PropertyRef Name="p_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Prisoner_Medical_prisoner_info">
+          <End Role="prisoner_info" Type="Self.prisoner_info" Multiplicity="1" />
+          <End Role="Prisoner_Medical" Type="Self.Prisoner_Medical" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="prisoner_info">
+              <PropertyRef Name="p_id" />
+            </Principal>
+            <Dependent Role="Prisoner_Medical">
+              <PropertyRef Name="p_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_prisoner_property_cash_prisoner_info">
+          <End Role="prisoner_info" Type="Self.prisoner_info" Multiplicity="1" />
+          <End Role="prisoner_property_cash" Type="Self.prisoner_property_cash" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="prisoner_info">
+              <PropertyRef Name="p_id" />
+            </Principal>
+            <Dependent Role="prisoner_property_cash">
+              <PropertyRef Name="p_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_prisoner_work_allotment_prisoner_info1">
+          <End Role="prisoner_info" Type="Self.prisoner_info" Multiplicity="1" />
+          <End Role="prisoner_work_allotment" Type="Self.prisoner_work_allotment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="prisoner_info">
+              <PropertyRef Name="p_id" />
+            </Principal>
+            <Dependent Role="prisoner_work_allotment">
+              <PropertyRef Name="p_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="PrisonersModelStoreContainer">
+          <EntitySet Name="Crime_Information" EntityType="Self.Crime_Information" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="prisoner_info" EntityType="Self.prisoner_info" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Prisoner_Crime" EntityType="Self.Prisoner_Crime" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Prisoner_Crime].[p_id] AS [p_id], 
+    [Prisoner_Crime].[crime_id] AS [crime_id]
+    FROM [dbo].[Prisoner_Crime] AS [Prisoner_Crime]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="Prisoner_Medical" EntityType="Self.Prisoner_Medical" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Prisoner_Medical].[p_id] AS [p_id], 
+    [Prisoner_Medical].[p_med_date] AS [p_med_date], 
+    [Prisoner_Medical].[p_disease] AS [p_disease], 
+    [Prisoner_Medical].[medicalward_num] AS [medicalward_num], 
+    [Prisoner_Medical].[bed_num] AS [bed_num], 
+    [Prisoner_Medical].[numberofdaysspent] AS [numberofdaysspent]
+    FROM [dbo].[Prisoner_Medical] AS [Prisoner_Medical]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="prisoner_property_cash" EntityType="Self.prisoner_property_cash" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [prisoner_property_cash].[p_id] AS [p_id], 
+    [prisoner_property_cash].[p_items] AS [p_items], 
+    [prisoner_property_cash].[item_roomnum] AS [item_roomnum], 
+    [prisoner_property_cash].[item_shelfnum] AS [item_shelfnum]
+    FROM [dbo].[prisoner_property_cash] AS [prisoner_property_cash]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="prisoner_work_allotment" EntityType="Self.prisoner_work_allotment" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [prisoner_work_allotment].[p_id] AS [p_id], 
+    [prisoner_work_allotment].[work_type] AS [work_type], 
+    [prisoner_work_allotment].[work_shifttime] AS [work_shifttime]
+    FROM [dbo].[prisoner_work_allotment] AS [prisoner_work_allotment]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_Prisoner_Crime_Crime_Information" Association="Self.FK_Prisoner_Crime_Crime_Information">
+            <End Role="Crime_Information" EntitySet="Crime_Information" />
+            <End Role="Prisoner_Crime" EntitySet="Prisoner_Crime" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Prisoner_Crime_prisoner_info" Association="Self.FK_Prisoner_Crime_prisoner_info">
+            <End Role="prisoner_info" EntitySet="prisoner_info" />
+            <End Role="Prisoner_Crime" EntitySet="Prisoner_Crime" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Prisoner_Medical_prisoner_info" Association="Self.FK_Prisoner_Medical_prisoner_info">
+            <End Role="prisoner_info" EntitySet="prisoner_info" />
+            <End Role="Prisoner_Medical" EntitySet="Prisoner_Medical" />
+          </AssociationSet>
+          <AssociationSet Name="FK_prisoner_property_cash_prisoner_info" Association="Self.FK_prisoner_property_cash_prisoner_info">
+            <End Role="prisoner_info" EntitySet="prisoner_info" />
+            <End Role="prisoner_property_cash" EntitySet="prisoner_property_cash" />
+          </AssociationSet>
+          <AssociationSet Name="FK_prisoner_work_allotment_prisoner_info1" Association="Self.FK_prisoner_work_allotment_prisoner_info1">
+            <End Role="prisoner_info" EntitySet="prisoner_info" />
+            <End Role="prisoner_work_allotment" EntitySet="prisoner_work_allotment" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="PrisonersModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Crime_Information">
+          <Key>
+            <PropertyRef Name="crime_id" />
+          </Key>
+          <Property Name="crime_id" Type="Int32" Nullable="false" />
+          <Property Name="crime_title" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="crime_punishment" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="crime_fine" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="crime_bail" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="prisoner_info" Relationship="Self.Prisoner_Crime" FromRole="Crime_Information" ToRole="prisoner_info" />
+        </EntityType>
+        <EntityType Name="prisoner_info">
+          <Key>
+            <PropertyRef Name="p_id" />
+          </Key>
+          <Property Name="p_id" Type="Int32" Nullable="false" />
+          <Property Name="p_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="p_cnic" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="p_address" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="p_homenum" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="p_maritalstatus" Type="Boolean" Nullable="false" />
+          <Property Name="p_block" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="p_roomnum" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="p_dateofarrival" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="p_dateofrelease" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="Prisoner_Medical" Relationship="Self.FK_Prisoner_Medical_prisoner_info" FromRole="prisoner_info" ToRole="Prisoner_Medical" />
+          <NavigationProperty Name="prisoner_property_cash" Relationship="Self.FK_prisoner_property_cash_prisoner_info" FromRole="prisoner_info" ToRole="prisoner_property_cash" />
+          <NavigationProperty Name="prisoner_work_allotment" Relationship="Self.FK_prisoner_work_allotment_prisoner_info" FromRole="prisoner_info" ToRole="prisoner_work_allotment" />
+          <NavigationProperty Name="Crime_Information" Relationship="Self.Prisoner_Crime" FromRole="prisoner_info" ToRole="Crime_Information" />
+        </EntityType>
+        <EntityType Name="prisoner_property_cash">
+          <Key>
+            <PropertyRef Name="p_id" />
+          </Key>
+          <Property Name="p_id" Type="Int32" Nullable="false" />
+          <Property Name="p_items" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="item_roomnum" Type="Int32" Nullable="false" />
+          <Property Name="item_shelfnum" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="prisoner_info" Relationship="Self.FK_prisoner_property_cash_prisoner_info" FromRole="prisoner_property_cash" ToRole="prisoner_info" />
+        </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Prisoner_Medical">
+          <Key>
+            <PropertyRef Name="p_id" />
+          </Key>
+          <Property Name="p_id" Type="Int32" Nullable="false" />
+          <Property Name="p_med_date" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="p_disease" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="medicalward_num" Type="Int32" Nullable="false" />
+          <Property Name="bed_num" Type="Int32" Nullable="false" />
+          <Property Name="numberofdaysspent" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="prisoner_info" Relationship="Self.FK_Prisoner_Medical_prisoner_info" FromRole="Prisoner_Medical" ToRole="prisoner_info" />
+        </EntityType>
+        <EntityType Name="prisoner_work_allotment">
+          <Key>
+            <PropertyRef Name="p_id" />
+          </Key>
+          <Property Name="p_id" Type="Int32" Nullable="false" />
+          <Property Name="work_type" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="work_shifttime" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="prisoner_info" Relationship="Self.FK_prisoner_work_allotment_prisoner_info" FromRole="prisoner_work_allotment" ToRole="prisoner_info" />
+        </EntityType>
+        <Association Name="FK_Prisoner_Medical_prisoner_info">
+          <End Role="prisoner_info" Type="Self.prisoner_info" Multiplicity="1" />
+          <End Role="Prisoner_Medical" Type="Self.Prisoner_Medical" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="prisoner_info">
+              <PropertyRef Name="p_id" />
+            </Principal>
+            <Dependent Role="Prisoner_Medical">
+              <PropertyRef Name="p_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_prisoner_property_cash_prisoner_info">
+          <End Role="prisoner_info" Type="Self.prisoner_info" Multiplicity="1" />
+          <End Role="prisoner_property_cash" Type="Self.prisoner_property_cash" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="prisoner_info">
+              <PropertyRef Name="p_id" />
+            </Principal>
+            <Dependent Role="prisoner_property_cash">
+              <PropertyRef Name="p_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_prisoner_work_allotment_prisoner_info">
+          <End Role="prisoner_info" Type="Self.prisoner_info" Multiplicity="0..1" />
+          <End Role="prisoner_work_allotment" Type="Self.prisoner_work_allotment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="prisoner_info">
+              <PropertyRef Name="p_id" />
+            </Principal>
+            <Dependent Role="prisoner_work_allotment">
+              <PropertyRef Name="p_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Prisoner_Crime">
+          <End Role="Crime_Information" Type="Self.Crime_Information" Multiplicity="0..1" />
+          <End Role="prisoner_info" Type="Self.prisoner_info" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="FoxRiverDatabaseEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Crime_Information" EntityType="Self.Crime_Information" />
+          <EntitySet Name="prisoner_info" EntityType="Self.prisoner_info" />
+          <EntitySet Name="prisoner_property_cash" EntityType="Self.prisoner_property_cash" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+          <EntitySet Name="Prisoner_Medical" EntityType="Self.Prisoner_Medical" />
+          <EntitySet Name="prisoner_work_allotment" EntityType="Self.prisoner_work_allotment" />
+          <AssociationSet Name="FK_Prisoner_Medical_prisoner_info" Association="Self.FK_Prisoner_Medical_prisoner_info">
+            <End Role="prisoner_info" EntitySet="prisoner_info" />
+            <End Role="Prisoner_Medical" EntitySet="Prisoner_Medical" />
+          </AssociationSet>
+          <AssociationSet Name="FK_prisoner_property_cash_prisoner_info" Association="Self.FK_prisoner_property_cash_prisoner_info">
+            <End Role="prisoner_info" EntitySet="prisoner_info" />
+            <End Role="prisoner_property_cash" EntitySet="prisoner_property_cash" />
+          </AssociationSet>
+          <AssociationSet Name="FK_prisoner_work_allotment_prisoner_info" Association="Self.FK_prisoner_work_allotment_prisoner_info">
+            <End Role="prisoner_info" EntitySet="prisoner_info" />
+            <End Role="prisoner_work_allotment" EntitySet="prisoner_work_allotment" />
+          </AssociationSet>
+          <AssociationSet Name="Prisoner_Crime" Association="Self.Prisoner_Crime">
+            <End Role="Crime_Information" EntitySet="Crime_Information" />
+            <End Role="prisoner_info" EntitySet="prisoner_info" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="PrisonersModelStoreContainer" CdmEntityContainer="FoxRiverDatabaseEntities">
+          <EntitySetMapping Name="Crime_Information">
+            <EntityTypeMapping TypeName="PrisonersModel.Crime_Information">
+              <MappingFragment StoreEntitySet="Crime_Information">
+                <ScalarProperty Name="crime_id" ColumnName="crime_id" />
+                <ScalarProperty Name="crime_title" ColumnName="crime_title" />
+                <ScalarProperty Name="crime_punishment" ColumnName="crime_punishment" />
+                <ScalarProperty Name="crime_fine" ColumnName="crime_fine" />
+                <ScalarProperty Name="crime_bail" ColumnName="crime_bail" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="prisoner_info">
+            <EntityTypeMapping TypeName="PrisonersModel.prisoner_info">
+              <MappingFragment StoreEntitySet="prisoner_info">
+                <ScalarProperty Name="p_id" ColumnName="p_id" />
+                <ScalarProperty Name="p_name" ColumnName="p_name" />
+                <ScalarProperty Name="p_cnic" ColumnName="p_cnic" />
+                <ScalarProperty Name="p_address" ColumnName="p_address" />
+                <ScalarProperty Name="p_homenum" ColumnName="p_homenum" />
+                <ScalarProperty Name="p_maritalstatus" ColumnName="p_maritalstatus" />
+                <ScalarProperty Name="p_block" ColumnName="p_block" />
+                <ScalarProperty Name="p_roomnum" ColumnName="p_roomnum" />
+                <ScalarProperty Name="p_dateofarrival" ColumnName="p_dateofarrival" />
+                <ScalarProperty Name="p_dateofrelease" ColumnName="p_dateofrelease" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="prisoner_property_cash">
+            <EntityTypeMapping TypeName="PrisonersModel.prisoner_property_cash">
+              <MappingFragment StoreEntitySet="prisoner_property_cash">
+                <ScalarProperty Name="p_id" ColumnName="p_id" />
+                <ScalarProperty Name="p_items" ColumnName="p_items" />
+                <ScalarProperty Name="item_roomnum" ColumnName="item_roomnum" />
+                <ScalarProperty Name="item_shelfnum" ColumnName="item_shelfnum" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="PrisonersModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Prisoner_Medical">
+            <EntityTypeMapping TypeName="PrisonersModel.Prisoner_Medical">
+              <MappingFragment StoreEntitySet="Prisoner_Medical">
+                <ScalarProperty Name="p_id" ColumnName="p_id" />
+                <ScalarProperty Name="p_med_date" ColumnName="p_med_date" />
+                <ScalarProperty Name="p_disease" ColumnName="p_disease" />
+                <ScalarProperty Name="medicalward_num" ColumnName="medicalward_num" />
+                <ScalarProperty Name="bed_num" ColumnName="bed_num" />
+                <ScalarProperty Name="numberofdaysspent" ColumnName="numberofdaysspent" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="prisoner_work_allotment">
+            <EntityTypeMapping TypeName="PrisonersModel.prisoner_work_allotment">
+              <MappingFragment StoreEntitySet="prisoner_work_allotment">
+                <ScalarProperty Name="p_id" ColumnName="p_id" />
+                <ScalarProperty Name="work_type" ColumnName="work_type" />
+                <ScalarProperty Name="work_shifttime" ColumnName="work_shifttime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="Prisoner_Crime" TypeName="PrisonersModel.Prisoner_Crime" StoreEntitySet="Prisoner_Crime">
+            <EndProperty Name="Crime_Information">
+              <ScalarProperty Name="crime_id" ColumnName="crime_id" />
+            </EndProperty>
+            <EndProperty Name="prisoner_info">
+              <ScalarProperty Name="p_id" ColumnName="p_id" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

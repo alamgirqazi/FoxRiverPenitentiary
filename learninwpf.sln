@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.21005.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "learninwpf", "learninwpf\learninwpf.csproj", "{73798118-25C8-425A-A4EB-724CD81B2CC3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "learn_models", "learn_models\learn_models.csproj", "{854F7363-29EB-47B7-84AB-DD67B5C67F39}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ViewModels", "ViewModels\ViewModels.csproj", "{05AA6954-F58E-434E-9A1B-59177910B2DE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{73798118-25C8-425A-A4EB-724CD81B2CC3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{73798118-25C8-425A-A4EB-724CD81B2CC3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{73798118-25C8-425A-A4EB-724CD81B2CC3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{73798118-25C8-425A-A4EB-724CD81B2CC3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{854F7363-29EB-47B7-84AB-DD67B5C67F39}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{854F7363-29EB-47B7-84AB-DD67B5C67F39}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{854F7363-29EB-47B7-84AB-DD67B5C67F39}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{854F7363-29EB-47B7-84AB-DD67B5C67F39}.Release|Any CPU.Build.0 = Release|Any CPU
+		{05AA6954-F58E-434E-9A1B-59177910B2DE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{05AA6954-F58E-434E-9A1B-59177910B2DE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{05AA6954-F58E-434E-9A1B-59177910B2DE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{05AA6954-F58E-434E-9A1B-59177910B2DE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

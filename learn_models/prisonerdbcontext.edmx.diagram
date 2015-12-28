@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="62a720a136b8484eb649f9cdcdbe4f63" Name="Diagram1">
+        <EntityTypeShape EntityType="PrisonersModel.Crime_Information" Width="1.5" PointX="0.5" PointY="3" IsExpanded="true" />
+        <EntityTypeShape EntityType="PrisonersModel.prisoner_info" Width="1.5" PointX="3.5" PointY="0.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="PrisonersModel.prisoner_property_cash" Width="1.5" PointX="6.625" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PrisonersModel.sysdiagram" Width="1.5" PointX="0.5" PointY="0.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="PrisonersModel.Prisoner_Medical" Width="1.5" PointX="8.5" PointY="2.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="PrisonersModel.prisoner_work_allotment" Width="2" PointX="5.625" PointY="4" IsExpanded="true" />
+        <AssociationConnector Association="PrisonersModel.FK_Prisoner_Medical_prisoner_info" ManuallyRouted="false" />
+        <AssociationConnector Association="PrisonersModel.FK_prisoner_property_cash_prisoner_info" ManuallyRouted="false" />
+        <AssociationConnector Association="PrisonersModel.FK_prisoner_work_allotment_prisoner_info" ManuallyRouted="false" />
+        <AssociationConnector Association="PrisonersModel.Prisoner_Crime" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

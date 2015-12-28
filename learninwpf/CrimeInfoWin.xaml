@@ -1,0 +1,94 @@
+﻿<controls:MetroWindow  x:Class="learninwpf.CrimeInfoWin"
+       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"           
+                      
+               xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls"
+        xmlns:Controls="http://metro.mahapps.com/winfx/xaml/controls" 
+     xmlns:local="clr-namespace:learninwpf"                   
+        Title="MainWindow" Height="500" Width="700" Background="white
+" WindowStartupLocation="CenterScreen" ResizeMode="CanMinimize">
+    <!--<Window.Resources>
+
+        <Style TargetType="{x:Type Control}" x:Key="TooltipInError">
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="Margin" Value="0,2,40,2" />
+            <Setter Property="Validation.ErrorTemplate">
+                <Setter.Value>
+                    <ControlTemplate>
+                        <DockPanel LastChildFill="true">
+                            <Border Background="Red" DockPanel.Dock="right" Margin="5,0,0,0" Width="14" Height="14" CornerRadius="7"
+                            ToolTip="{Binding ElementName=customAdorner, Path=AdornedElement.(Validation.Errors)[0].ErrorContent}">
+                                <TextBlock Text="!" VerticalAlignment="center" HorizontalAlignment="center" FontWeight="Bold" Foreground="white">
+                                </TextBlock>
+                            </Border>
+                            <AdornedElementPlaceholder Name="customAdorner" VerticalAlignment="Center" >
+                                <Border BorderBrush="red" BorderThickness="1" />
+                            </AdornedElementPlaceholder>
+                        </DockPanel>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>-->
+
+    <Grid Margin="10,10,0,0" Height="414" VerticalAlignment="Top" Loaded="Grid_Loaded">
+        <Button Style="{StaticResource AccentedSquareButtonStyle}" Name="btnclear" Content="Clear Form" HorizontalAlignment="Left" Margin="335,189,0,0" VerticalAlignment="Top" Width="94" RenderTransformOrigin="-5.73,4.721" Height="33" Grid.ColumnSpan="2" Click="btnclear_Click" TabIndex="9"/>
+        <TextBox Controls:TextBoxHelper.Watermark="Enter Crime ID"  Name="txtid" Margin="174,30,328,358" TabIndex="3">
+
+            <TextBox.Text>
+                <Binding Path="crime_id"
+                         ValidatesOnDataErrors="True"   
+                         UpdateSourceTrigger="LostFocus" NotifyOnValidationError="True">
+                    <Binding.ValidationRules>
+                        <ExceptionValidationRule/>
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox.Text>
+        </TextBox>
+        <TextBox Controls:TextBoxHelper.Watermark="Enter Crime Punishment" Name="txtcrimepunishment"  Margin="174,109,328,279" TabIndex="5" >
+            <TextBox.Text>
+                <Binding Path="crime_punishment"
+                         ValidatesOnDataErrors="True"   
+                         UpdateSourceTrigger="LostFocus" NotifyOnValidationError="True">
+                    <Binding.ValidationRules>
+                        <ExceptionValidationRule/>
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox.Text>
+
+        </TextBox>
+        <TextBox Controls:TextBoxHelper.Watermark="Enter Crime Fine" Name="txtcrimefine" Margin="174,154,328,234" TabIndex="6">
+
+            <TextBox.Text>
+                <Binding Path="crime_fine"
+                         ValidatesOnDataErrors="True"   
+                         UpdateSourceTrigger="LostFocus" NotifyOnValidationError="True">
+                    <Binding.ValidationRules>
+                        <ExceptionValidationRule/>
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox.Text>
+        </TextBox>
+        <Label Content="Crime ID" HorizontalAlignment="Left" Margin="28,30,0,0" VerticalAlignment="Top"/>
+        <Label Content="Crime Fine" HorizontalAlignment="Left" Margin="28,153,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.5,1.462"/>
+        <Label Content="Crime Title" HorizontalAlignment="Left" Margin="32,71,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.5,1.462"/>
+        <Label Content="Crime Punishment" HorizontalAlignment="Left" Margin="32,108,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.5,1.462"/>
+        <Label Content="Crime Bail" HorizontalAlignment="Left" Margin="28,195,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.5,1.462"/>
+        <Button Style="{StaticResource AccentedSquareButtonStyle}" IsEnabled="{Binding ElementName=txtcrimefine, Path=Text.Length}" Content="Save" HorizontalAlignment="Left" Margin="175,257,0,0" VerticalAlignment="Top" Name="btnSave" Width="94" RenderTransformOrigin="-5.73,4.721" Height="33" Click="btnSave_Click_1" TabIndex="8" />
+        <TextBox Controls:TextBoxHelper.Watermark="Enter Crime Title" x:Name="txtcrimetitle" Margin="174,71,328,317" TabIndex="4" >
+            <TextBox.Text>
+                <Binding Path="crime_title"
+                         ValidatesOnDataErrors="True"   
+                         UpdateSourceTrigger="LostFocus" NotifyOnValidationError="True">
+                    <Binding.ValidationRules>
+                        <ExceptionValidationRule/>
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox.Text>
+
+        </TextBox>
+        <CheckBox Name="cbbail" HorizontalAlignment="Left" Margin="174,199,0,0" VerticalAlignment="Top" TabIndex="7"/>
+
+    </Grid>
+</controls:MetroWindow>
+
